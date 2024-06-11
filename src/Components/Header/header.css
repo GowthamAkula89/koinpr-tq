@@ -1,0 +1,78 @@
+.header-container{
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 11px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-title-container{
+    width: 125px;
+}
+.header-name{
+    font-family: Inter;
+    font-size: 27px;
+    font-weight: 600;
+    line-height: 32.68px;
+    text-align: left;
+}
+.header-descrip{
+    font-family: Sansation;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 14.55px;
+    padding-left: 18px;
+    color: var(--color-gray);
+}
+.header-prod{
+    font-family: Inter;
+    color: var(--color-white);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 15.73px;
+}
+.header-navbar{
+    display: flex;
+    gap: 44px;
+}
+.header-navbar-item1{
+    font-size: 16px;
+    font-weight: 590;
+    line-height: 19.2px;
+    background: linear-gradient(90deg, #D6E2FF 0%, #3762CA 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.item1-star{
+    -webkit-text-fill-color: rgb(239, 204, 5);
+}
+.header-navbar-item2{
+    font-size: 16px;
+    font-weight: 590;
+    line-height: 19.2px;
+}
+.header-auth {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-login-register {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-login-register button,
+.header-logged-in button {
+    padding: 5px 10px;
+    background-color: #3762CA;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.header-logged-in span {
+    margin-right: 10px;
+}

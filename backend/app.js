@@ -3,7 +3,8 @@ const compression=require("compression");
 const cors=require("cors");
 const httpStatus=require("http-status");
 const helmet=require("helmet");
-
+const routes= require("./src/routes");
+const ApiError = require("./src/utils/ApiError");
 const app=express();
 //Helmet is a middleware that helps secure your Express.js applications by setting various HTTP headers.
 app.use(helmet());
@@ -25,5 +26,8 @@ client-side application, the browser, by default, blocks the request for securit
 */
 app.use(cors());
 app.options("*",cors());
-
+app.use("/v1",routes);
+app.use((req,res,next)=>{
+    next(new ApiError(httpStatus.NOT_FOUND,"Not found"));
+})
 module.exports=app;

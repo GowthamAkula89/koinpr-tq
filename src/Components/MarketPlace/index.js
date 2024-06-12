@@ -1,4 +1,5 @@
 import React from "react";
+import { IoMdSearch } from "react-icons/io";
 import "./marketPlace.css";
 const MarketPlace = () => {
     return(
@@ -6,11 +7,13 @@ const MarketPlace = () => {
             <div className="marketplace-header">
                 <div className="marketplace-title">Koinpr Marketplace</div>
                 <div className="marketplace-search-add">
-                    <input type="text" placeholder="Search" className="marketplace-search"/>
-                    <div className="marketplace-add">Add Offering</div>
+                    <div className="search-bar">
+                        <input type="text" placeholder="Search" className="marketplace-search"/>
+                        <IoMdSearch className="search-btn"/>
+                    </div>
+                    <div className="marketplace-add-btn">Add Offering</div>
                 </div>
             </div>
-            
         </div>
     )
 }

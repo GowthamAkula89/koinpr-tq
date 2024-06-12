@@ -3,11 +3,40 @@
 
 }
 .marketplace-header{
-    
+    display: flex;
+    justify-content: space-between;
 }
 .marketplace-title{
     font-size: 31px;
     font-weight: 590;
     line-height: 37.2px;
     text-align: left;
+}
+.marketplace-search-add{
+    display: flex;
+    gap: 15px;
+}
+.search-bar{
+    position: relative;
+}
+.search-btn{
+    position: absolute;
+    right: 2px;
+    top: 5px;
+    width: 25px;
+    height: 25px;   
+}
+.marketplace-search{
+    outline: none;
+    padding: 5px 25px 5px 15px;
+    border-radius: 5px;
+    border: 2px solid var(--color-gray);
+}
+.marketplace-add-btn{
+    display: flex;
+    align-items: center;
+    background-color: var(--color-blue);
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: var(--color-white);
 }

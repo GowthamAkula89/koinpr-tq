@@ -48,7 +48,7 @@ const Header = () => {
                 <div className="header-descrip">A <span className="header-prod">Todayq</span> Product</div>
             </div>
             <div className="header-navbar">
-                <div className="header-navbar-item1">✨360º Marketing</div>
+                <div className="header-navbar-item1"><span className="item1-star">✨</span>360º Marketing</div>
                 <div className="header-navbar-item2">Marketplace</div>
                 <div className="header-navbar-item2">Packages</div>
             </div>

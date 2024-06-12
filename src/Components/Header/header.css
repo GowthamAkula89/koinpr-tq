@@ -76,3 +76,8 @@
 .header-logged-in span {
     margin-right: 10px;
 }
+@media screen and (max-width: 859px) {
+    .header-navbar {
+        display: none;
+    }
+}

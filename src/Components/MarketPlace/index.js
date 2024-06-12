@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdSearch } from "react-icons/io";
 import "./marketPlace.css";
+import OfferingCard from "../OfferingCard";
 const MarketPlace = () => {
     return(
         <div className="marketplace-container">
@@ -14,6 +15,7 @@ const MarketPlace = () => {
                     <div className="marketplace-add-btn">Add Offering</div>
                 </div>
             </div>
+             <OfferingCard/>
         </div>
     )
 }

@@ -1,0 +1,61 @@
+.offering-card-container{
+    width: 243px;
+    height: 239px;
+    border-radius: 12px;
+    border: 1px solid #DBDBDB;
+    padding: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.offering-img{
+    width: 45px;
+    height: 45px;
+}
+.offering-name{
+    font-size: 16px;
+    font-weight: 510;
+    line-height: 19.2px;
+    text-align: left;
+}
+.offering-details{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.offering-detail{
+    display: flex;
+    gap: 5px;
+    background-color: #EFF4FF;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.32px;
+    text-align: left;
+    width: 115px;
+    padding: 2px;
+}
+.cost-text{
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 19.5px;
+    text-align: left;
+    color: #999999;
+}
+.cost-value{
+    font-size: 16px;
+    font-weight: 590;
+    line-height: 19.2px;
+    text-align: left;
+    color: #000000;
+}
+.offering-card-buy-cost{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart-btn{
+    width: 25px;
+    height: 25px;
+}

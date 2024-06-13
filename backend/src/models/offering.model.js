@@ -1,5 +1,20 @@
 const mongoose = require("mongoose");
 
+const allowedContentSchema = new mongoose.Schema({
+    gambling: {
+        type: Boolean,
+        required: true
+    },
+    adultContent: {
+        type: Boolean,
+        required: true
+    },
+    cryptoWeb3: {
+        type: Boolean,
+        required: true
+    }
+}, { _id: false });
+
 const offeringSchema = new mongoose.Schema({
     category: {
         type: String,
@@ -22,6 +37,10 @@ const offeringSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    companyLogo: {
+        type: Buffer,
+        required: false
+    },
     email: {
         type: String,
         required: true,
@@ -29,6 +48,20 @@ const offeringSchema = new mongoose.Schema({
     },
     telegramId: {
         type: String,
+        required: true,
+        trim: true
+    },
+    contentLang: {
+        type: [String],
+        required: true
+    },
+    regions: {
+        type: [String],
+        required: true,
+        validate: [arrayLimit, '{PATH} exceeds the limit of 5']
+    },
+    allowedContent: {
+        type: allowedContentSchema,
         required: true
     },
     price: {
@@ -40,7 +73,13 @@ const offeringSchema = new mongoose.Schema({
         required: true
     }
 });
+
+function arrayLimit(val) {
+    return val.length <= 5;
+}
+
 const OfferingsData = mongoose.model("OfferingsData", offeringSchema);
+
 module.exports = {
     OfferingsData
-}
+};

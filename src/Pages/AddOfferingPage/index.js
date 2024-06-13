@@ -4,6 +4,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import "./addOfferingPage.css";
 import { Link } from "react-router-dom";
 import AddOfferingSidebar from "../../Components/AddOfferingSidebar";
+import AddOfferingFrom from "../../Components/AddOfferingForm";
 
 const AddOfferingPage = () => {
     return(
@@ -18,6 +19,7 @@ const AddOfferingPage = () => {
                 </div>
                 <div className="add-offering-page-container">
                     <AddOfferingSidebar/>
+                    <AddOfferingFrom/>
                 </div>
             </div>
         </div>

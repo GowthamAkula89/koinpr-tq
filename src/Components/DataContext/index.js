@@ -5,7 +5,7 @@ const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [offeringDone, setOfferingDone] = useState({
     done: false,
-    progress: false
+    progress: true
   });
   const [contentDone, setContentDone] = useState({
     done: false,

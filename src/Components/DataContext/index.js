@@ -15,8 +15,21 @@ export const DataProvider = ({ children }) => {
     done: false,
     progress: false
   });
+  const [offeringData, setOfferingData] = useState({
+      category: "",
+      websiteName: "",
+      websiteUrl: "",
+      description: "",
+      companyLogo: null,
+      email: "",
+      telegramId: "",
+      contentLang: [],
+      regions: [],
+      price: "",
+      discountPrice: ""
+  });
   return (
-    <DataContext.Provider value={{ offeringDone, setOfferingDone, contentDone, setContentDone, reviewDone, setReviewDone }}>
+    <DataContext.Provider value={{ offeringDone, setOfferingDone, contentDone, setContentDone, reviewDone, setReviewDone, offeringData, setOfferingData }}>
       {children}
     </DataContext.Provider>
   );

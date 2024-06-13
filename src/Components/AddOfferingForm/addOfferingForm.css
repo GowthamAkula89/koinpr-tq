@@ -117,3 +117,8 @@
     align-items: center;
     justify-content: center;
 }
+.next-btn.disabled{
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border: 1px solid var(--color-gray);
+}

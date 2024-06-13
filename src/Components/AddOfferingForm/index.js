@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./addOfferingForm.css";
 import DataContext from "../DataContext";
 import { Link } from "react-router-dom";
@@ -26,7 +26,20 @@ const regionList = [
 
 const AddOfferingForm = () => {
     const { offeringDone, setOfferingDone, contentDone, setContentDone, reviewDone, offeringData, setOfferingData } = useContext(DataContext);
+    const [formValid, setFormValid] = useState(false);
 
+    useEffect(() => {
+        
+        validateForm();
+    }, [offeringData]);
+
+    const validateForm = () => {
+        const requiredFields = [
+            "websiteName", "websiteUrl", "description", "email", "telegramId", "contentLang", "regions"
+        ];
+        const isValid = requiredFields.every(field => !!offeringData[field]);
+        setFormValid(isValid);
+    };
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         if (type === "checkbox") {
@@ -37,7 +50,7 @@ const AddOfferingForm = () => {
         } else if (type === "file") {
             setOfferingData({
                 ...offeringData,
-                [name]: e.target.files[0]
+                [name]: e.target.files[0].name
             });
         } else {
             setOfferingData({
@@ -76,7 +89,7 @@ const AddOfferingForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         setOfferingDone({
             done: true,
@@ -116,6 +129,7 @@ const AddOfferingForm = () => {
                                     name="websiteName"
                                     value={offeringData.websiteName}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
                             <div className="form-input-details">
@@ -128,6 +142,7 @@ const AddOfferingForm = () => {
                                     name="websiteUrl"
                                     value={offeringData.websiteUrl}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
                         </div>
@@ -140,6 +155,7 @@ const AddOfferingForm = () => {
                                 name="description"
                                 value={offeringData.description}
                                 onChange={handleChange}
+                                required
                             />
                         </div>
                         <div className="form-input-details">
@@ -165,6 +181,7 @@ const AddOfferingForm = () => {
                                     name="email"
                                     value={offeringData.email}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
                             <div className="form-input-details">
@@ -177,11 +194,12 @@ const AddOfferingForm = () => {
                                     name="telegramId"
                                     value={offeringData.telegramId}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
                             <div className="form-input-details">
                                 <label htmlFor="contentLang" className="configuration-name">Select Content Language</label>
-                                <select id="contentLang" name="contentLang" className="input-value" onChange={handleMultiSelectChange}>
+                                <select id="contentLang" name="contentLang" className="input-value" onChange={handleMultiSelectChange} required>
                                     <option>Select languages</option>
                                     {languageList.map((lang, index) => (
                                         <option key={index} value={lang}>{lang}</option>
@@ -197,7 +215,7 @@ const AddOfferingForm = () => {
                             </div>
                             <div className="form-input-details">
                                 <label htmlFor="regions" className="configuration-name">Select 5 GEO’s</label>
-                                <select id="regions" name="regions" className="input-value" onChange={handleMultiSelectChange}>
+                                <select id="regions" name="regions" className="input-value" onChange={handleMultiSelectChange} required> 
                                     <option>Select geo locations</option>
                                     {regionList.map((region, index) => (
                                         <option key={index} value={region}>{region}</option>
@@ -253,6 +271,7 @@ const AddOfferingForm = () => {
                                                 value="yes"
                                                 checked={offeringData.allowedContent.adultContent === true}
                                                 onChange={handleRadioChange}
+                                                required
                                             />
                                             <label htmlFor="adult-yes">Yes</label>
                                         </div>
@@ -264,6 +283,7 @@ const AddOfferingForm = () => {
                                                 value="no"
                                                 checked={offeringData.allowedContent.adultContent === false}
                                                 onChange={handleRadioChange}
+                                                required
                                             />
                                             <label htmlFor="adult-no">No</label>
                                         </div>
@@ -298,7 +318,14 @@ const AddOfferingForm = () => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className="next-btn">Next</button>
+                        {formValid ? (
+                            <Link to="/addofferingcontent" className="nav-link">
+                                <button type="submit" className="next-btn">Next</button>
+                            </Link>
+                        ) : (
+                            <button type="button" className="next-btn disabled" disabled>Next</button>
+                        )}
+                        
                     </>
                 }
             </form>

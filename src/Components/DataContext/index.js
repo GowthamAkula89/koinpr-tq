@@ -30,8 +30,8 @@ export const DataProvider = ({ children }) => {
         adultContent: null,
         cryptoWeb3: null
       },
-      price: "",
-      discountPrice: ""
+      price: 0,
+      discountPrice: 0
   });
   return (
     <DataContext.Provider value={{ offeringDone, setOfferingDone, contentDone, setContentDone, reviewDone, setReviewDone, offeringData, setOfferingData }}>

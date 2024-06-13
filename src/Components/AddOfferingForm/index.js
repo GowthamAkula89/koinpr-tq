@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./addOfferingForm.css";
 import DataContext from "../DataContext";
+import { Link } from "react-router-dom";
 const categoryList = ["Content", "Distribution", "Ads", "Twitter Influencers", "Telegram Influencers", "Youtube Influencers", "Instagram Influencer", "ICO Listing", "Exchange Listing"];
 const languageList = [
     "English", "Spanish", "French", "German", "Chinese",
@@ -239,7 +240,10 @@ const AddOfferingForm = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="next-btn" onClick={handleNext}>Next</div>
+                        <Link to="/addofferingcontent" className="nav-link">
+                            <div className="next-btn" onClick={handleNext}>Next</div>
+                        </Link>
+                        
                     </>
                 }
             </form>

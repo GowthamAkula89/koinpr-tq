@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./addOfferingForm.css";
 import DataContext from "../DataContext";
 import { Link } from "react-router-dom";
+
 const categoryList = ["Content", "Distribution", "Ads", "Twitter Influencers", "Telegram Influencers", "Youtube Influencers", "Instagram Influencer", "ICO Listing", "Exchange Listing"];
 const languageList = [
     "English", "Spanish", "French", "German", "Chinese",
@@ -23,24 +24,27 @@ const regionList = [
     "Norway", "Denmark", "Finland", "Greece", "Portugal"
 ];
 
-
 const AddOfferingForm = () => {
-    const {offeringDone, setOfferingDone, contentDone, setContentDone, reviewDone, offeringData, setOfferingData} = useContext(DataContext);
+    const { offeringDone, setOfferingDone, contentDone, setContentDone, reviewDone, offeringData, setOfferingData } = useContext(DataContext);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setOfferingData({
-            ...offeringData,
-            [name]: value
-        });
-    };
-
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        setOfferingData({
-            ...offeringData,
-            companyLogo: file
-        });
+        const { name, value, type, checked } = e.target;
+        if (type === "checkbox") {
+            setOfferingData({
+                ...offeringData,
+                [name]: checked
+            });
+        } else if (type === "file") {
+            setOfferingData({
+                ...offeringData,
+                [name]: e.target.files[0]
+            });
+        } else {
+            setOfferingData({
+                ...offeringData,
+                [name]: value
+            });
+        }
     };
 
     const handleMultiSelectChange = (e) => {
@@ -61,23 +65,35 @@ const AddOfferingForm = () => {
         });
     };
 
-    const handleNext = () => {
+    const handleRadioChange = (e) => {
+        const { name, value } = e.target;
+        setOfferingData(prevState => ({
+            ...prevState,
+            allowedContent: {
+                ...prevState.allowedContent,
+                [name]: value === "yes"
+            }
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
         setOfferingDone({
             done: true,
             progress: false
-        })
-        setContentDone((prevState) => {
-            return{
-                ...prevState,
-                progress: true
-            }
-        })
-    }
-    console.log(offeringData.companyLogo);
+        });
+        setContentDone((prevState) => ({
+            ...prevState,
+            progress: true
+        }));
+    };
+    console.log(offeringData);
     return (
         <div className="add-offering-form">
-            <div className="offering-section">{offeringDone.progress ? "Add Offering" : contentDone.progress ? "Add Content Offerings" : reviewDone.progress ? "Review" : ""}</div>
-            <form className="form-container">
+            <div className="offering-section">
+                {offeringDone.progress ? "Add Offering" : contentDone.progress ? "Add Content Offerings" : reviewDone.progress ? "Review" : ""}
+            </div>
+            <form className="form-container" onSubmit={handleSubmit}>
                 <div className="form-input-details">
                     <label htmlFor="category" className="input-title">Select Category</label>
                     <select id="category" name="category" value={offeringData.category} onChange={handleChange}>
@@ -135,14 +151,14 @@ const AddOfferingForm = () => {
                                 id="companyLogo"
                                 name="companyLogo"
                                 accept="image/*"
-                                onChange={handleFileChange}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="form-sub-details">
                             <div className="form-input-details">
                                 <label htmlFor="email" className="configuration-name">Official Email</label>
                                 <input
-                                    type="text"
+                                    type="email"
                                     placeholder="Type here"
                                     className="input-value"
                                     id="email"
@@ -203,12 +219,26 @@ const AddOfferingForm = () => {
                                     <div className="content-name">Gambling</div>
                                     <div className="radio-btns">
                                         <div>
-                                            <input type="radio" id="gambling-yes" name="gambling-content" value="Gambling"/>
+                                            <input
+                                                type="radio"
+                                                id="gambling-yes"
+                                                name="gambling"
+                                                value="yes"
+                                                checked={offeringData.allowedContent.gambling === true}
+                                                onChange={handleRadioChange}
+                                            />
                                             <label htmlFor="gambling-yes">Yes</label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="gambling-no" name="gambling-content" value="Gambling"/>
-                                            <label htmlFor="gambling-no">No</label><br></br>
+                                            <input
+                                                type="radio"
+                                                id="gambling-no"
+                                                name="gambling"
+                                                value="no"
+                                                checked={offeringData.allowedContent.gambling === false}
+                                                onChange={handleRadioChange}
+                                            />
+                                            <label htmlFor="gambling-no">No</label>
                                         </div>
                                     </div>
                                 </div>
@@ -216,12 +246,26 @@ const AddOfferingForm = () => {
                                     <div className="content-name">Adult Content</div>
                                     <div className="radio-btns">
                                         <div>
-                                            <input type="radio" id="adult-yes" name="adult-content" value="Adult Content"/>
+                                            <input
+                                                type="radio"
+                                                id="adult-yes"
+                                                name="adultContent"
+                                                value="yes"
+                                                checked={offeringData.allowedContent.adultContent === true}
+                                                onChange={handleRadioChange}
+                                            />
                                             <label htmlFor="adult-yes">Yes</label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="adult-no" name="adult-content" value="Adult Content"/>
-                                            <label htmlFor="adult-no">No</label><br></br>
+                                            <input
+                                                type="radio"
+                                                id="adult-no"
+                                                name="adultContent"
+                                                value="no"
+                                                checked={offeringData.allowedContent.adultContent === false}
+                                                onChange={handleRadioChange}
+                                            />
+                                            <label htmlFor="adult-no">No</label>
                                         </div>
                                     </div>
                                 </div>
@@ -229,26 +273,37 @@ const AddOfferingForm = () => {
                                     <div className="content-name">Crypto/Web3.0</div>
                                     <div className="radio-btns">
                                         <div>
-                                            <input type="radio" id="crypto-yes" name="crypto-content" value="Crypto/Web3.0"/>
+                                            <input
+                                                type="radio"
+                                                id="crypto-yes"
+                                                name="cryptoWeb3"
+                                                value="yes"
+                                                checked={offeringData.allowedContent.cryptoWeb3 === true}
+                                                onChange={handleRadioChange}
+                                            />
                                             <label htmlFor="crypto-yes">Yes</label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="crypto-no" name="crypto-content" value="Crypto/Web3.0"/>
-                                            <label htmlFor="crypto-no">No</label><br></br>
+                                            <input
+                                                type="radio"
+                                                id="crypto-no"
+                                                name="cryptoWeb3"
+                                                value="no"
+                                                checked={offeringData.allowedContent.cryptoWeb3 === false}
+                                                onChange={handleRadioChange}
+                                            />
+                                            <label htmlFor="crypto-no">No</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <Link to="/addofferingcontent" className="nav-link">
-                            <div className="next-btn" onClick={handleNext}>Next</div>
-                        </Link>
-                        
+                        <button type="submit" className="next-btn">Next</button>
                     </>
                 }
             </form>
         </div>
     );
-}
+};
 
 export default AddOfferingForm;

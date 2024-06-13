@@ -25,6 +25,11 @@ export const DataProvider = ({ children }) => {
       telegramId: "",
       contentLang: [],
       regions: [],
+      allowedContent: {
+        gambling: null,
+        adultContent: null,
+        cryptoWeb3: null
+      },
       price: "",
       discountPrice: ""
   });

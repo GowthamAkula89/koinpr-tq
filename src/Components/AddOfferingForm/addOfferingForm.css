@@ -121,4 +121,5 @@
     background-color: var(--color-white);
     color: var(--color-black);
     border: 1px solid var(--color-gray);
+    cursor:default;
 }

@@ -4,6 +4,9 @@ import {DataProvider} from './Components/DataContext';
 import HomePage from './Pages/HomePage';
 import AddOfferingPage from './Pages/AddOfferingPage';
 import AddOfferingContentPage from './Pages/AddOfferingContentPage';
+export const config = {
+  endpoint: `https://koinpr-tq-ag.onrender.com/v1/offerings`
+}
 function App() {
   return (
     <div className="App">

@@ -1,10 +1,26 @@
-.offering-card-container{
+.offering-card{
     width: 243px;
-    height: 239px;
+    height: 100%;
     border-radius: 12px;
     border: 1px solid #DBDBDB;
     padding: 15px;
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+    position: relative;
+}
+.offering-link{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-gray);
+    position: absolute;
+    top: 2px;
+    right: 10px;
+}
+.offering-card-details{
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -31,9 +47,8 @@
     align-items: center;
     font-size: 12px;
     font-weight: 400;
-    line-height: 14.32px;
     text-align: left;
-    width: 115px;
+    width: 75%;
     padding: 2px;
 }
 .cost-text{

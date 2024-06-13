@@ -1,6 +1,8 @@
 .marketplace-container{
     padding: 15px 48px;
-
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 .marketplace-header{
     display: flex;
@@ -42,4 +44,9 @@
 }
 .nav-link{
     text-decoration: none;
+}
+.offerings-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 }

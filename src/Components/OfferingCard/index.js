@@ -20,7 +20,7 @@ const OfferingCard = ({data}) => {
                     <div className="offering-detail">
                         <CiGlobe />
                         <div>{data.regions.map((region, index) => (
-                            <span>{index !== 0 ? `, ${region}`:`${region}`}</span>
+                            <span key={index}>{index !== 0 ? `, ${region}`:`${region}`}</span>
                         ))}</div>
                     </div>
                 }

@@ -76,6 +76,10 @@
 .header-logged-in span {
     margin-right: 10px;
 }
+.logo-link{
+    text-decoration: none;
+    color: var(--color-white);
+}
 @media screen and (max-width: 859px) {
     .header-navbar {
         display: none;

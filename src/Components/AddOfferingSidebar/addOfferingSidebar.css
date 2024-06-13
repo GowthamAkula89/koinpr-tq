@@ -1,0 +1,41 @@
+.add-offering-sidebar{
+    width: 246px;
+    height: 219px;
+    border-radius: 8px;
+    border: 1px solid #DBDBDB;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+}
+.side-bar-name{
+    font-size: 20px;
+    font-weight: 590;
+    line-height: 24px;
+    text-align: left;
+}
+.side-bar-items{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.sibe-bar-item{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.sibebar-item-status{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #7D7D7D;
+}
+.sibebar-item-status.done{
+    background-color: green;
+}
+.sibebar-item-status.progress{
+    border: 2px solid green;
+}
+.done-status{
+    color: var(--color-white);
+}

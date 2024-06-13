@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+.nav-link{
+  text-decoration: none;
+  color: var(--color-white);
+}

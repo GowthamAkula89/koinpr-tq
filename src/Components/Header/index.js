@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RegisterOrLoginModal from "../RegisterOrLoginModal";
 import "./header.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [showModal, setShowModal] = useState(false);
@@ -43,10 +44,12 @@ const Header = () => {
 
     return (
         <div className="header-container">
-            <div className="header-title-container">
-                <div className="header-name">Koinpr</div>
-                <div className="header-descrip">A <span className="header-prod">Todayq</span> Product</div>
-            </div>
+            <Link to="/" className="logo-link">
+                <div className="header-title-container">
+                    <div className="header-name">Koinpr</div>
+                    <div className="header-descrip">A <span className="header-prod">Todayq</span> Product</div>
+                </div>
+            </Link>
             <div className="header-navbar">
                 <div className="header-navbar-item1"><span className="item1-star">✨</span>360º Marketing</div>
                 <div className="header-navbar-item2">Marketplace</div>

@@ -8,7 +8,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 const OfferingCard = ({data}) => {
     return(
         <div className="offering-card">
-            <a href={data.websiteUrl} className="offering-link">
+            <a href={data.websiteUrl} target="blank" className="offering-link">
                 <div className="web-link">website link</div>
                 <FaExternalLinkAlt />
             </a>

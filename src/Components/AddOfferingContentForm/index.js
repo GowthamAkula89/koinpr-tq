@@ -55,7 +55,7 @@ const AddOfferingContentForm = () => {
             <div className="offering-section">
                 {offeringDone.progress ? "Add Offering" : contentDone.progress ? "Add Content Offerings" : reviewDone.progress ? "Review" : ""}
             </div>
-            <form className="form-container" onSubmit={handleSubmit}>
+            <form className="form-container">
                 <div className="form-input-details">
                     <label htmlFor="offering" className="input-title">Select Offering</label>
                     <select id="offering" name="offering" value={offeringData.offering} onChange={handleChange} className="input-value">
@@ -97,7 +97,7 @@ const AddOfferingContentForm = () => {
                     </>
                 )}
                 {formValid ? (
-                    <button type="submit" className="next-btn">Next</button>
+                    <button type="submit" className="next-btn" onClick={handleSubmit}>Next</button>
                 ) : (
                     <button type="button" className="next-btn disabled" disabled>Next</button>
                 )}

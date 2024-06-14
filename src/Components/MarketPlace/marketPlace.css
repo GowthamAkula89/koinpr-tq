@@ -37,17 +37,20 @@
     margin-left: auto;
 }
 .marketplace-search{
+    width: 50vw;
     outline: none;
     padding: 5px 25px 5px 15px;
     border-radius: 5px;
     border: 2px solid var(--color-gray);
 }
 .marketplace-add-btn{
+    width: 126px;
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: var(--color-blue);
     border-radius: 5px;
-    padding: 5px 15px;
+    padding: 6px 15px;
     color: var(--color-white);
 }
 .nav-link{
@@ -65,4 +68,20 @@
     align-items: center;
     font-size: 25px;
     font-weight: 600;
+}
+@media screen and (max-width: 789px){
+    .marketplace-search-add{
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-end;
+    }
+    
+    .marketplace-header{
+        
+    }
+}
+@media screen and (max-width: 589px){
+    .marketplace-container{
+        padding: 15px 10px;
+    }
 }

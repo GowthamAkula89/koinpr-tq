@@ -12,8 +12,8 @@ const MarketPlace = () => {
         const fetchData = async() => {
             setLoading(true);
             try {
-              const response = await fetch(config.endpoint);
-              const data = await response.json();
+                const response = await fetch(config.endpoint);
+                const data = await response.json();
                 setOfferingsData(data.offerings);
             } 
             catch (error) {

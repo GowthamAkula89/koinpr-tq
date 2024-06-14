@@ -123,3 +123,9 @@
     border: 1px solid var(--color-gray);
     cursor:default;
 }
+@media screen and (max-width: 789px){
+    .add-offering-form{
+        width: 100%;
+        padding: 15px 15px;
+    }
+}

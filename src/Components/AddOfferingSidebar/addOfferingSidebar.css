@@ -39,3 +39,8 @@
 .done-status{
     color: var(--color-white);
 }
+@media screen and (max-width: 789px){
+    .add-offering-sidebar{
+        display: none;
+    }
+}

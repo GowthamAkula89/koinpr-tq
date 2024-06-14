@@ -33,9 +33,9 @@ const MarketPlace = () => {
                     <Link to="/addoffering" className="nav-link">
                         <div className="marketplace-add-btn">Add Offering</div>
                     </Link>
-                    
                 </div>
             </div>
+            <div className="go-to-cart-btn">Go to Cart</div>
             <div className="offerings-container">
                 {offeringsData.map((data) => (
                     <div key={data._id}><OfferingCard data={data}/></div>

@@ -28,6 +28,13 @@
     width: 25px;
     height: 25px;   
 }
+.go-to-cart-btn {
+    background: #0A0A0A;
+    color: var(--color-white);
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin-left: auto;
+}
 .marketplace-search{
     outline: none;
     padding: 5px 25px 5px 15px;

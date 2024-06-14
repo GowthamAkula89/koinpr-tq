@@ -4,7 +4,7 @@ import { BsExclamationCircle } from "react-icons/bs";
 import DataContext from "../DataContext";
 import { useSnackbar } from 'notistack';
 import { ClipLoader } from 'react-spinners';
-
+import { useNavigate } from "react-router-dom";
 const countryStateMap = {
     USA: ["California", "Texas", "New York", "Florida", "Illinois", "Pennsylvania", "Ohio"],
     Canada: ["Ontario", "Quebec", "British Columbia", "Alberta", "Manitoba", "Saskatchewan", "Nova Scotia"],
@@ -22,7 +22,7 @@ const countryStateMap = {
 const TAX_RATE = 0.1;
 
 const Checkout = () => {
-    const { cart } = useContext(DataContext);
+    const { cart, setCart } = useContext(DataContext);
     const { enqueueSnackbar } = useSnackbar();
     const [form, setForm] = useState({
         firstName: "",
@@ -33,7 +33,7 @@ const Checkout = () => {
         state: "",
         paymentMethod: "",
     });
-
+    const navigate = useNavigate();
     const [isFormValid, setIsFormValid] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
@@ -101,7 +101,8 @@ const Checkout = () => {
             }
             console.log(checkOutDetails);
             localStorage.setItem("cart",[]);
-            
+            setCart([])
+            navigate("/");
         }
     };
 

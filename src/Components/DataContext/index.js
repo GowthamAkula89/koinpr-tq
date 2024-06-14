@@ -1,5 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
-import {config} from "../../App"
+import React, { createContext, useState } from 'react';
 // Create a context
 const DataContext = createContext();
 // Create a provider component
@@ -35,9 +34,22 @@ export const DataProvider = ({ children }) => {
       discountPrice: 0
   });
   const [offeringsData, setOfferingsData] = useState([]);
-  
+  const [cart, setCart] = useState([]);
   return (
-    <DataContext.Provider value={{ offeringDone, setOfferingDone, contentDone, setContentDone, reviewDone, setReviewDone, offeringData, setOfferingData, offeringsData, setOfferingsData }}>
+    <DataContext.Provider value={{ 
+      offeringDone, 
+      setOfferingDone, 
+      contentDone, 
+      setContentDone, 
+      reviewDone, 
+      setReviewDone, 
+      offeringData, 
+      setOfferingData, 
+      offeringsData, 
+      setOfferingsData, 
+      cart, 
+      setCart
+      }}>
       {children}
     </DataContext.Provider>
   );

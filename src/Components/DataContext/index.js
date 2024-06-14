@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 // Create a context
 const DataContext = createContext();
 // Create a provider component
@@ -33,8 +33,18 @@ export const DataProvider = ({ children }) => {
       price: 0,
       discountPrice: 0
   });
+  const [checkoutDetails, setCheckoutDetails] = useState({
+    cart:[],
+    transactionDetails:null
+  })
   const [offeringsData, setOfferingsData] = useState([]);
   const [cart, setCart] = useState([]);
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+        setCart(JSON.parse(storedCart));
+    }
+}, []);
   return (
     <DataContext.Provider value={{ 
       offeringDone, 
@@ -48,7 +58,8 @@ export const DataProvider = ({ children }) => {
       offeringsData, 
       setOfferingsData, 
       cart, 
-      setCart
+      setCart,
+      checkoutDetails, setCheckoutDetails
       }}>
       {children}
     </DataContext.Provider>

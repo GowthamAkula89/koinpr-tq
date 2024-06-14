@@ -14,7 +14,9 @@ const OfferingCard = ({ data }) => {
     const handleAddCart = () => {
         const existingItem = cart.find((item) => item._id === data._id);
         if (!existingItem) {
-            setCart([...cart, data]);
+            const newCart = [...cart, data];
+            setCart(newCart);
+            localStorage.setItem('cart', JSON.stringify(newCart) ||[]);
             enqueueSnackbar('Offering added to the cart', { variant: 'success' });
         } else {
             enqueueSnackbar('Offering already added in the cart', { variant: 'warning' });

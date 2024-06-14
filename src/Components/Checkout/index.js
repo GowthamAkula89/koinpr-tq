@@ -63,7 +63,12 @@ const Checkout = () => {
         if (!isFormValid) {
             enqueueSnackbar('Please fill out all required fields', { variant: 'warning' });
         } else {
-            // Handle the checkout logic here
+            const checkOutDetails = {
+                cartDetails: cart,
+                transactionDetails: form
+            }
+            console.log(checkOutDetails);
+            enqueueSnackbar('Order successfully placed', { variant: 'success' });
         }
     };
 

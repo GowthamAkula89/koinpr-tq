@@ -34,12 +34,12 @@ const CartSection = () => {
             }
             return item;
         });
-
+        
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         setShowUploadButton(false);
     };
-
+    console.log("updatedcart", cart)
     return (
         <div className="cart-section-container">
             <div className="cart-nav">

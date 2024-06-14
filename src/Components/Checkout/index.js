@@ -3,12 +3,21 @@ import "./checkout.css";
 import { BsExclamationCircle } from "react-icons/bs";
 import DataContext from "../DataContext";
 import { useSnackbar } from 'notistack';
+import { ClipLoader } from 'react-spinners';
 
 const countryStateMap = {
-    USA: ["California", "Texas", "New York"],
-    Canada: ["Ontario", "Quebec", "British Columbia"],
-    India: ["Maharashtra", "Gujarat", "Punjab"]
+    USA: ["California", "Texas", "New York", "Florida", "Illinois", "Pennsylvania", "Ohio"],
+    Canada: ["Ontario", "Quebec", "British Columbia", "Alberta", "Manitoba", "Saskatchewan", "Nova Scotia"],
+    India: ["Andhra Pradesh","Maharashtra", "Gujarat", "Punjab", "Karnataka", "Tamil Nadu", "West Bengal", "Rajasthan"],
+    Australia: ["New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia", "Tasmania"],
+    Germany: ["Bavaria", "Berlin", "Hamburg", "Hesse", "Saxony", "North Rhine-Westphalia", "Baden-Württemberg"],
+    Brazil: ["São Paulo", "Rio de Janeiro", "Bahia", "Minas Gerais", "Paraná", "Rio Grande do Sul", "Pernambuco"],
+    China: ["Guangdong", "Beijing", "Shanghai", "Zhejiang", "Jiangsu", "Sichuan", "Shandong"],
+    Russia: ["Moscow", "Saint Petersburg", "Novosibirsk", "Yekaterinburg", "Nizhny Novgorod", "Kazan", "Chelyabinsk"],
+    Japan: ["Tokyo", "Osaka", "Kyoto", "Hokkaido", "Fukuoka", "Nagoya", "Sapporo"],
+    Mexico: ["Mexico City", "Jalisco", "Nuevo León", "Puebla", "Guanajuato", "Veracruz", "Chiapas"]
 };
+
 
 const TAX_RATE = 0.1;
 
@@ -26,7 +35,7 @@ const Checkout = () => {
     });
 
     const [isFormValid, setIsFormValid] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         const { firstName, lastName, email, telegram, country, state } = form;
         setIsFormValid(firstName && lastName && email && telegram && country && state);
@@ -59,16 +68,40 @@ const Checkout = () => {
         return subtotal() + tax();
     };
 
-    const handleCheckoutClick = () => {
+    const handleCheckoutClick = async() => {
         if (!isFormValid) {
             enqueueSnackbar('Please fill out all required fields', { variant: 'warning' });
         } else {
+            setIsLoading(true);
             const checkOutDetails = {
                 cartDetails: cart,
                 transactionDetails: form
             }
+            try{
+                const response = await fetch(`https://koinpr-tq-ag.onrender.com/v1/transactions`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify(checkOutDetails)
+                })
+                if(response.ok){
+                    const data = await response.json();
+                    console.log("OfferingCreated", data);
+                    enqueueSnackbar('Order successfully placed', { variant: 'success' });
+                }else{
+                    console.error('Failed to create :', response.statusText);
+                }
+    
+            }catch(error){
+                console.error('Error:', error);
+                enqueueSnackbar('Error occured white ordering', { variant: 'error' });
+            }finally{
+                setIsLoading(false);
+            }
             console.log(checkOutDetails);
-            enqueueSnackbar('Order successfully placed', { variant: 'success' });
+            localStorage.setItem("cart",[]);
+            
         }
     };
 
@@ -220,7 +253,7 @@ const Checkout = () => {
                         <div className="cost-details-ele">Total</div>
                         <div className="cost-details-ele">$ {total().toFixed(2)}</div>
                     </div>
-                    <button className="checkout-btn" onClick={handleCheckoutClick}>Check Out</button>
+                    <button className="checkout-btn" onClick={handleCheckoutClick}>{isLoading ? <ClipLoader size={24} color="#ffffff" /> : "Check Out"}</button>
                 </div>
             </div>
         </div>

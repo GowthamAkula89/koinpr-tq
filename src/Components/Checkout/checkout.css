@@ -1,0 +1,100 @@
+.checkout-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.checkout-note{
+    display: flex;
+    display: flex;
+    align-items: flex-start;
+    text-align: start;
+    gap: 5px;
+    padding: 13px 52px 13px 16px;
+    background-color: #FFF3C7;
+    box-shadow: -2px 0px #EEC800;
+}
+.checkout-note-title{
+    font-size: 16px;
+    font-weight: 590;
+    line-height: 19.2px;
+    text-align: left;
+
+}
+.checkout-note-description{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #5E5E5E;
+}
+.checkout-billing-name{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    font-weight: 590;
+    line-height: 19.2px;
+    text-align: left;
+}
+.billing-details{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+.input-details{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+}
+.lable-name{
+    font-size: 16px;
+    font-weight: 510;
+    line-height: 19.2px;
+    text-align: left;
+}
+
+.checkout-details{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.transaction-details{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start ;
+}
+.payment-name{
+    color: rgb(39, 59, 239);
+    font-size: 25px;
+    font-weight: 600;
+}
+.summary-details{
+    width: 50%;
+    background-color: #F1F4FF;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.cost-details{
+    display: flex;
+    justify-content: space-between;
+}
+.const-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.checkout-btn{
+    padding: 15px 20px 15px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 590;
+    line-height: 19.2px;
+    text-align: center;
+    background-color: #0A0A0A;
+    color: var(--color-white);
+}

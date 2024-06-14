@@ -4,6 +4,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import DataContext from "../../Components/DataContext";
 import DodoImg from "../Utils/dodo.png";
+import Checkout from "../Checkout";
 
 const CartSection = () => {
     const { cart } = useContext(DataContext);
@@ -14,14 +15,6 @@ const CartSection = () => {
         const file = event.target.files[0];
         setUploadedFile(file);
         console.log("Uploaded file:", file);
-    };
-
-    const handleGetItWritten = () => {
-        if (uploadedFile) {
-            console.log("Proceeding with Get it Written for:", uploadedFile);
-        } else {
-            console.log("No file uploaded");
-        }
     };
 
     const triggerFileInput = () => {
@@ -42,32 +35,28 @@ const CartSection = () => {
                         <div className="items-name">Items</div>
                         <div className="cart-items">
                         {cart.map((data, index) => (
-                            <div className="cart-item">
+                            <div className="cart-item" key={index}>
                                 <img src={DodoImg} alt="dodo_img" className="item-logo" />
-                                <div className="item-details">
-                                    <div className="item-name">{data.websiteName}</div>
-                                    <div className="item-description">{data.description}</div>
-                                    <div className="item-price">${data.price}</div>
-                                </div>
-                                <div className="upload-details">
-                                    <div className="upload-doc">
-                                        <input 
-                                            type="file" 
-                                            id="file-input"
-                                            onChange={handleFileUpload}
-                                            className="file-input"
-                                            style={{ display: 'none' }}
-                                        />
-                                        <button onClick={triggerFileInput} className="file-input-button">
-                                            Choose File
-                                        </button>
-                                        {uploadedFile && <span className="file-name">{uploadedFile.name}</span>}
+                                <div className="item-details-container">
+                                    <div className="item-details">
+                                        <div className="item-name">{data.websiteName}</div>
+                                        <div className="item-description">{data.description}</div>
+                                        <div className="item-price">${data.price}</div>
                                     </div>
-                                    <div>or</div>
-                                    <div className="get-it-written">
-                                        <button onClick={handleGetItWritten} className="get-it-written-button">
-                                            Get it Written
-                                        </button>
+                                    <div className="upload-details">
+                                        <div className="upload-doc">
+                                            <input 
+                                                type="file" 
+                                                id="file-input"
+                                                onChange={handleFileUpload}
+                                                className="file-input"
+                                                style={{ display: 'none' }}
+                                            />
+                                            <button onClick={triggerFileInput} className="file-input-button">
+                                                Choose File
+                                            </button>
+                                            {uploadedFile && <span className="file-name">{uploadedFile.name}</span>}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +65,7 @@ const CartSection = () => {
                     </div>
                 </div>
                 <div className="details-container">
-                        Hi
+                       <Checkout/>
                 </div>
             </div>
         </div>

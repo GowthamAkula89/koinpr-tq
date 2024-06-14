@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./addOfferingForm.css";
 import DataContext from "../DataContext";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 const categoryList = ["Content", "Distribution", "Ads", "Twitter Influencers", "Telegram Influencers", "Youtube Influencers", "Instagram Influencer", "ICO Listing", "Exchange Listing"];
 const languageList = [
     "English", "Spanish", "French", "German", "Chinese",
@@ -27,9 +26,8 @@ const regionList = [
 const AddOfferingForm = () => {
     const { offeringDone, setOfferingDone, contentDone, setContentDone, reviewDone, offeringData, setOfferingData } = useContext(DataContext);
     const [formValid, setFormValid] = useState(false);
-
+    const navigate = useNavigate();
     useEffect(() => {
-        
         validateForm();
     }, [offeringData]);
 
@@ -99,6 +97,7 @@ const AddOfferingForm = () => {
             ...prevState,
             progress: true
         }));
+        navigate("/addofferingcontent");
     };
     console.log(offeringData);
     return (
@@ -106,7 +105,7 @@ const AddOfferingForm = () => {
             <div className="offering-section">
                 {offeringDone.progress ? "Add Offering" : contentDone.progress ? "Add Content Offerings" : reviewDone.progress ? "Review" : ""}
             </div>
-            <form className="form-container" onSubmit={handleSubmit}>
+            <form className="form-container">
                 <div className="form-input-details">
                     <label htmlFor="category" className="input-title">Select Category</label>
                     <select id="category" name="category" value={offeringData.category} onChange={handleChange}>
@@ -319,9 +318,7 @@ const AddOfferingForm = () => {
                             </div>
                         </div>
                         {formValid ? (
-                            <Link to="/addofferingcontent" className="nav-link">
-                                <button type="submit" className="next-btn">Next</button>
-                            </Link>
+                            <button type="submit" className="next-btn" onClick={handleSubmit}>Next</button>
                         ) : (
                             <button type="button" className="next-btn disabled" disabled>Next</button>
                         )}

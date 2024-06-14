@@ -4,6 +4,7 @@ import Header from "../../Components/Header";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import AddOfferingSidebar from "../../Components/AddOfferingSidebar";
+import AddOfferingContentForm from "../../Components/AddOfferingContentForm";
 const AddOfferingContentPage = () => {
     return(
         <div>
@@ -17,7 +18,7 @@ const AddOfferingContentPage = () => {
                 </div>
                 <div className="add-offering-page-container">
                     <AddOfferingSidebar/>
-                    <div>Hi</div>
+                    <AddOfferingContentForm/>
                 </div>
             </div>
         </div>

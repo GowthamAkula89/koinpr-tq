@@ -30,6 +30,7 @@ export const DataProvider = ({ children }) => {
         adultContent: null,
         cryptoWeb3: null
       },
+      offering:"",
       price: 0,
       discountPrice: 0
   });

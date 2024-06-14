@@ -1,0 +1,127 @@
+.cart-section-container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    
+}
+.cart-nav{
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 15px 48px;
+    box-shadow: 5px 5px 6px gray;
+}
+.page-name{
+    font-size: 20px;
+    font-weight: 510;
+    line-height: 24px;
+    text-align: left;
+}
+.cart-section{
+    padding: 15px 48px;
+    display: flex;
+    gap: 13px;
+}
+.details-container{
+    width: 50%;
+    padding: 15px 15px;
+    border: 1px solid #DBDBDB;
+    border-radius: 10px;
+}
+.cart-items-container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.items-name{
+    font-size: 16px;
+    font-weight: 590;
+    line-height: 19.2px;
+    text-align: left;
+}
+.cart-items{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.cart-item{
+    display: flex;
+    gap: 18px;
+    background-color: #F9F9F9;
+    padding: 22px 15px;
+    border-radius: 10px;
+}
+.item-logo{
+    width: 40px;
+    height: 40px;
+}
+.item-details{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px    ;
+    align-items: flex-start;
+}
+.item-name{
+    font-size: 16px;
+    font-weight: 590;
+    line-height: 19.2px;
+    text-align: left;
+}
+.item-description{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20.8px;
+    text-align: left;
+    color: #5E5E5E;
+
+}
+.item-price{
+    font-size: 20px;
+    font-weight: 590;
+    text-align: left;
+}
+.upload-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.upload-doc {
+    display: flex;
+    align-items: center;
+}
+
+.file-input-button {
+    padding: 5px 20px;
+    background-color: var(--color-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.file-input-button:hover {
+    background-color: #0056b3;
+}
+
+.file-name {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.get-it-written-button {
+    padding: 5px 20px;
+    background-color: var(--color-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.get-it-written-button:hover {
+    background-color: #0056b3;
+}

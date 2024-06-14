@@ -57,3 +57,11 @@
     flex-wrap: wrap;
     gap: 15px;
 }
+.loading-message {
+    height: 89vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 600;
+}

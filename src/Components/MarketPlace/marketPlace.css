@@ -29,6 +29,7 @@
     height: 25px;   
 }
 .go-to-cart-btn {
+    width: 115px;
     background: #0A0A0A;
     color: var(--color-white);
     border-radius: 5px;

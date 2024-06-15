@@ -19,8 +19,6 @@ const Header = () => {
     const registerUser = (username, password) => {
         localStorage.setItem("username", username);
         localStorage.setItem("password", password);
-        setIsLoggedIn(true);
-        setUsername(username);
     };
 
     const loginUser = (username, password) => {

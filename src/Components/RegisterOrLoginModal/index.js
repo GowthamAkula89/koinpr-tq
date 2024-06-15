@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import "./registerOrLoginModal.css";
 
+import { useSnackbar } from 'notistack';
 const RegisterOrLoginModal = ({ showModal, closeModal, registerUser, loginUser }) => {
     const [isRegister, setIsRegister] = useState(true);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
+    const { enqueueSnackbar } = useSnackbar();
     const handleRegisterSubmit = (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
             alert("Passwords do not match!");
+            enqueueSnackbar('password does not match', { variant: 'error' });
             return;
         }
         registerUser(username, password);
         closeModal();
+        enqueueSnackbar('Registered, Please login', { variant: 'success' });
     };
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         loginUser(username, password);
         closeModal();
+       
     };
 
     return (

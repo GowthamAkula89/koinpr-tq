@@ -64,6 +64,10 @@ const offeringSchema = new mongoose.Schema({
         type: allowedContentSchema,
         required: true
     },
+    offering:{
+        type:String,
+        required:true
+    },
     price: {
         type: Number,
         required: true

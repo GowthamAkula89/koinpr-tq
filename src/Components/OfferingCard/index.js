@@ -46,7 +46,7 @@ const OfferingCard = ({ data }) => {
                         </div>
                     }
                     <div className="offering-detail">
-                        <div>Press Release</div>
+                        <div>{data.offering}</div>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@ const OfferingCard = ({ data }) => {
                 <div className="offering-card-buy-cost">
                     <div className="cost-section">
                         <div className="cost-text">Starting from</div>
-                        <div className="cost-value">₹5000</div>
+                        <div className="cost-value">₹ {data.price}</div>
                     </div>
                     <FaCartPlus className="cart-btn" onClick={handleAddCart} />
                 </div>

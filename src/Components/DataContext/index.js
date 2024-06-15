@@ -40,12 +40,30 @@ export const DataProvider = ({ children }) => {
   })
   const [offeringsData, setOfferingsData] = useState([]);
   const [cart, setCart] = useState([]);
+  const [isContentLoading, setIsContentLoading] = useState(false);
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
         setCart(JSON.parse(storedCart));
     }
-}, []);
+  }, []);
+  useEffect (() =>{
+    const fetchData = async() => {
+      setIsContentLoading(true);
+        try {
+            const response = await fetch(`https://koinpr-tq-ag.onrender.com/v1/offerings`);
+            const data = await response.json();
+            setOfferingsData(data.offerings);
+        } 
+        catch (error) {
+            console.error('Error fetching projects:', error);
+        }
+        finally{
+          setIsContentLoading(false);
+        }
+      }
+    fetchData()
+  },[])
   return (
     <DataContext.Provider value={{ 
       offeringDone, 
@@ -58,6 +76,7 @@ export const DataProvider = ({ children }) => {
       setOfferingData, 
       offeringsData, 
       setOfferingsData, 
+      isContentLoading,
       cart, 
       setCart,
       checkoutDetails, setCheckoutDetails

@@ -80,6 +80,19 @@
     text-decoration: none;
     color: var(--color-white);
 }
+
+.header-navbar .nav-link.active,
+.header-navbar .nav-link.active .header-navbar-item2 {
+    color: #ff9800;
+    font-weight: bold;
+    border-bottom: 2px solid #ff9800; 
+}
+
+.header-navbar-item1,
+.header-navbar-item2 {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 859px) {
     .header-navbar {
         display: none;

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import RegisterOrLoginModal from "../RegisterOrLoginModal";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
     const [showModal, setShowModal] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
+    const location = useLocation();
+    const [activeNavItem, setActiveNavItem] = useState(location.pathname);
 
     useEffect(() => {
         const storedUser = localStorage.getItem("username");
@@ -15,6 +17,10 @@ const Header = () => {
             setUsername(storedUser);
         }
     }, []);
+
+    useEffect(() => {
+        setActiveNavItem(location.pathname);
+    }, [location.pathname]);
 
     const registerUser = (username, password) => {
         localStorage.setItem("username", username);
@@ -49,9 +55,27 @@ const Header = () => {
                 </div>
             </Link>
             <div className="header-navbar">
-                <div className="header-navbar-item1"><span className="item1-star">✨</span>360º Marketing</div>
-                <div className="header-navbar-item2">Marketplace</div>
-                <div className="header-navbar-item2">Packages</div>
+                <Link
+                    to="/" className="nav-link"
+                >
+                    <div className="header-navbar-item1">
+                        <span className="item1-star">✨</span>360º Marketing
+                    </div>
+                </Link>
+                <Link
+                    to="/"
+                    className={`nav-link ${activeNavItem === '/marketplace' ? 'active' : ''}`}
+                    onClick={() => setActiveNavItem('/marketplace')}
+                >
+                    <div className="header-navbar-item2">Marketplace</div>
+                </Link>
+                <Link
+                    to="/"
+                    className={`nav-link ${activeNavItem === '/packages' ? 'active' : ''}`}
+                    onClick={() => setActiveNavItem('/packages')}
+                >
+                    <div className="header-navbar-item2">Packages</div>
+                </Link>
             </div>
             <div className="header-auth">
                 {isLoggedIn ? (

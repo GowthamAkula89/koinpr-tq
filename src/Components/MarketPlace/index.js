@@ -1,34 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { IoMdSearch } from "react-icons/io";
 import "./marketPlace.css";
 import OfferingCard from "../OfferingCard";
 import DataContext from "../DataContext";
-import {config} from "../../App"
 import { Link } from "react-router-dom";
 const MarketPlace = () => {
-    const {offeringsData, setOfferingsData} = useContext(DataContext);
-    const [loading, setLoading] = useState(false);
-    useEffect (() =>{
-        const fetchData = async() => {
-            setLoading(true);
-            try {
-                const response = await fetch(config.endpoint);
-                const data = await response.json();
-                setOfferingsData(data.offerings);
-            } 
-            catch (error) {
-                console.error('Error fetching projects:', error);
-            }
-            finally{
-                setLoading(false);
-            }
-          }
-        fetchData()
-      },[])
-      console.log(offeringsData);
+    const {offeringsData, isContentLoading} = useContext(DataContext);
+    
+    
+    console.log(offeringsData);
     return(
         <>
-        {loading ? (<div className="loading-message">Loading please wait...</div>):(
+        {isContentLoading ? (<div className="loading-message">Loading please wait...</div>):(
             <div className="marketplace-container">
                 <div className="marketplace-header">
                     <div className="marketplace-title">Koinpr Marketplace</div>

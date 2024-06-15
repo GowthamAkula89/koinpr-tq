@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./review.css";
 import DataContext from "../DataContext";
 import { useNavigate } from "react-router-dom";
-
+import { ClipLoader } from 'react-spinners';
+import { useSnackbar } from 'notistack';
 const Review = () => {
-    const { offeringData, setContentDone, setReviewDone } = useContext(DataContext);
+    const { offeringData,setOfferingDone, setContentDone, setReviewDone,offeringsData,setOfferingData, setOfferingsData } = useContext(DataContext);
+    const[isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-
+    const { enqueueSnackbar } = useSnackbar();
     const handleBack = () => {
         setContentDone({
             done: false,
@@ -20,14 +22,55 @@ const Review = () => {
     };
 
     const handleConfirm = async () => {
-        // Assuming you have an API call or any async operation to save the data
-        // await saveOfferingData(offeringData);
+        setIsLoading(true);
+        try{
+            const response = await fetch(`https://koinpr-tq-ag.onrender.com/v1/offerings`,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(offeringData)
+            })
+            if(response.ok){
+                const data = await response.json();
+                setOfferingsData([...offeringsData, data]);
+                setOfferingData({
+                    category: "",
+                    websiteName: "",
+                    websiteUrl: "",
+                    description: "",
+                    companyLogo: null,
+                    email: "",
+                    telegramId: "",
+                    contentLang: [],
+                    regions: [],
+                    allowedContent: {
+                        gambling: null,
+                        adultContent: null,
+                        cryptoWeb3: null
+                    },
+                    offering:"",
+                    price: 0,
+                    discountPrice: 0
+                })
+                setOfferingDone({done: false,progress: true});
+                setContentDone({done: false,progress: false});
+                setReviewDone({done: false,progress: false});
+                console.log("offeringData", data);
+                enqueueSnackbar('Successfully created Offering', { variant: 'success' });
+                navigate("/");
+                
+            }else{
+                enqueueSnackbar('Website name already exists', { variant: 'warning' });
+            }
 
-        setReviewDone({
-            done: true,
-            progress: false
-        });
-        navigate("/success");
+        }catch(error){
+            enqueueSnackbar('Unexpected Error', { variant: 'error' });
+            console.error('Error:', error);
+        }finally{
+            setIsLoading(false);
+        }
+        
     };
 
     return (
@@ -91,7 +134,7 @@ const Review = () => {
             </div>
             <div className="review-buttons">
                 <button className="back-btn" onClick={handleBack}>Back</button>
-                <button className="next-btn" onClick={handleConfirm}>Confirm</button>
+                <button className="next-btn" onClick={handleConfirm}>{isLoading ? <ClipLoader size={24} color="#ffffff" /> : "Check Out"}</button>
             </div>
         </div>
     );

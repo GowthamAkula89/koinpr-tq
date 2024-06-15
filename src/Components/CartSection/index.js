@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import DataContext from "../../Components/DataContext";
 import DodoImg from "../Utils/dodo.png";
 import Checkout from "../Checkout";
+import { ImCross } from "react-icons/im";
 
 const CartSection = () => {
     const { cart, setCart } = useContext(DataContext);
@@ -19,7 +20,7 @@ const CartSection = () => {
         }));
         setShowUploadButton(true);
     };
-    
+
     const triggerFileInput = (itemId) => {
         document.getElementById(`file-input-${itemId}`).click();
     };
@@ -34,12 +35,18 @@ const CartSection = () => {
             }
             return item;
         });
-        
+
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         setShowUploadButton(false);
     };
-    console.log("updatedcart", cart)
+
+    const handleRemoveItem = (itemId) => {
+        const updatedCart = cart.filter((item) => item._id !== itemId);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+    };
+
     return (
         <div className="cart-section-container">
             <div className="cart-nav">
@@ -53,7 +60,7 @@ const CartSection = () => {
                     <div className="cart-items-container">
                         <div className="items-name">Items</div>
                         <div className="cart-items">
-                            {cart.length !== 0 &&
+                            {cart.length === 0 ? (<div className="cart-items-warning"> Cart is Empty</div>):
                                 cart.map((data, index) => (
                                     <div className="cart-item" key={index}>
                                         <img src={DodoImg} alt="dodo_img" className="item-logo" />
@@ -88,6 +95,9 @@ const CartSection = () => {
                                                         Update Cart
                                                     </button>
                                                 )}
+                                            </div>
+                                            <div className="delete-btn" onClick={() => handleRemoveItem(data._id)}>
+                                                <ImCross />
                                             </div>
                                         </div>
                                     </div>

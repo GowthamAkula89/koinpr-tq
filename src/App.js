@@ -6,6 +6,7 @@ import AddOfferingPage from './Pages/AddOfferingPage';
 import AddOfferingContentPage from './Pages/AddOfferingContentPage';
 import { SnackbarProvider } from 'notistack';
 import CartPage from './Pages/CartPage';
+import ReviewPage from './Pages/ReviewPage';
 export const config = {
   endpoint: `https://koinpr-tq-ag.onrender.com/v1/offerings`
 }
@@ -20,6 +21,7 @@ function App() {
               <Route path="/addoffering" element={<AddOfferingPage/>}/>
               <Route path='/addofferingcontent' element = {<AddOfferingContentPage/>}/>
               <Route path='/cart' element = {<CartPage/>}/>
+              <Route path="/review" element = {<ReviewPage/>}/>
             </Routes>
           </Router>
         </DataProvider>

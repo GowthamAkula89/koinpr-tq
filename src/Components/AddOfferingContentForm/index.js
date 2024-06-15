@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const offeringList = ["Press Release", "Sponsored Content", "Banner Ad"];
 
 const AddOfferingContentForm = () => {
-    const { offeringDone, contentDone, setContentDone, reviewDone, setReviewDone, offeringData, setOfferingData } = useContext(DataContext);
+    const { offeringDone,setOfferingDone, contentDone, setContentDone, reviewDone, setReviewDone, offeringData, setOfferingData } = useContext(DataContext);
     const [formValid, setFormValid] = useState(false);
     const navigate = useNavigate();
 
@@ -36,7 +36,17 @@ const AddOfferingContentForm = () => {
             });
         }
     };
-
+    const handleBack = () => {
+        setOfferingDone({
+            done: false,
+            progress: true
+        });
+        setContentDone({
+            done: false,
+            progress: false
+        });
+        navigate("/addoffering");
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         setContentDone({
@@ -96,11 +106,15 @@ const AddOfferingContentForm = () => {
                         </div>
                     </>
                 )}
-                {formValid ? (
+                <div className="review-buttons">
+                    <button className="back-btn" onClick={handleBack}>Back</button>
+                    {formValid ? (
                     <button type="submit" className="next-btn" onClick={handleSubmit}>Next</button>
-                ) : (
-                    <button type="button" className="next-btn disabled" disabled>Next</button>
-                )}
+                    ) : (
+                        <button type="button" className="next-btn disabled" disabled>Next</button>
+                    )}
+                </div>
+                
             </form>
         </div>
     );
